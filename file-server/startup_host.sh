@@ -1,4 +1,4 @@
-docker compose up --build -d
+docker compose down --remove-orphans && sudo rm -rf files & docker compose up --build -d
 
 # for each file in files, do curl command
 for file in ./files/*; do
