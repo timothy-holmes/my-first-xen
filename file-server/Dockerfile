@@ -25,5 +25,6 @@ ENV DATA_DIR '/data'
 COPY --from=build /usr/bin/simple-file-server /usr/bin/simple-file-server
 COPY startup.sh /
 
+RUN chmod +x /startup.sh
 CMD [ "/startup.sh" ]
 
