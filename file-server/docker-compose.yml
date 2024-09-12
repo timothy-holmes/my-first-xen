@@ -11,6 +11,6 @@ services:
       # - WRITE_SHARED_KEY=abc
       # - READ_SHARED_KEY=123
     volumes:
-      - ./test_file:/seed/test_file
+      - ./test_file.txt:/seed/test_file.txt
       # consolidated seed files volume bind
       - ./files:/seed
