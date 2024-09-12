@@ -1,0 +1,14 @@
+services:
+  simple-file-server:
+    build: .
+    container_name: mfx-file-server
+    ports:
+      - "4000:4000"
+    environment:
+      - LOG_LEVEL=debug
+      - LOCATION_BASE_URL=http://localhost:4000
+      - DATA_DIR=/data
+      # - WRITE_SHARED_KEY=abc
+      # - READ_SHARED_KEY=123
+    volumes:
+      - ./test_file:/data/test_file
