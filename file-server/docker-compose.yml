@@ -2,11 +2,10 @@ services:
   simple-file-server:
     build: .
     container_name: mfx-file-server
-    ports:
-      - "4000:4000"
+    env_file: .env
     environment:
       - LOG_LEVEL=debug
-      - LOCATION_BASE_URL=http://localhost:4000
+      - LOCATION_BASE_URL=https://sfs.$DOMAIN
       - DATA_DIR=/data
       # - WRITE_SHARED_KEY=abc
       # - READ_SHARED_KEY=123
@@ -14,3 +13,12 @@ services:
       - ./test_file.txt:/seed/test_file.txt
       # consolidated seed files volume bind
       - ./files:/seed
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.simple-file-server.rule=Host(`sfs.$DOMAIN`)"
+      - "traefik.http.routers.simple-file-server.entrypoints=websecure"
+      - "traefik.http.routers.simple-file-server.tls.certresolver=myresolver"
+      - "traefik.http.services.simple-file-server.loadbalancer.server.port=4000"
+    restart: unless-stopped
+    networks:
+      - reverse-proxy-public
