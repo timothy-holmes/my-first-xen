@@ -7,9 +7,7 @@ WORKDIR /simple-file-server
 
 COPY ./src /simple-file-server
 RUN go mod download
-
-WORKDIR /simple-file-server
-# RUN go test
+RUN go test
 RUN go build -o /usr/bin/simple-file-server
 
 # Run stage
