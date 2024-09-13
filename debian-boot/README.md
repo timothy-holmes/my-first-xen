@@ -9,7 +9,7 @@
     Add to the `append` line (eg. `append initrd=/install.amd/initrd.gz`) with the following to the boot parameters to enable preseed (replace preseed url):
 
     ```cfg
-    auto=true priority=critical preseed/url=http://p1.local/n40l_preseed.cfg
+    auto=true priority=critical preseed/url=https://sfs.cloud.timothyholmes.com.au/8f664522-f78a-411f-8491-e9730139301c
     ```
 
 2. Boot it up
