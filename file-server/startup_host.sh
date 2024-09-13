@@ -14,4 +14,10 @@ docker compose up --build -d
 sleep 20
 
 # for each file in files, do curl command
-docker exec -it mfx-file-server sh -c 'for file in /seed/*; do curl -d "$(cat $file)" -X POST -H "Authorization: Bearer $WRITE_SHARED_KEY" https://sfs.cloud.timothyholmes.com.au >> ./seed_files.txt; cat ./seed_files.txt; done'
+docker exec -it mfx-file-server sh -c ' \
+    for file in /seed/*; do \
+        echo "$file" >> ./seed_files.txt; \
+        curl -d "$(cat "$file")" -X POST -H "Authorization: Bearer $WRITE_SHARED_KEY" https://sfs.cloud.timothyholmes.com.au >> ./seed_files.txt; \
+        echo "" >> ./seed_files.txt; \
+    done; \
+    cat ./seed_files.txt'
