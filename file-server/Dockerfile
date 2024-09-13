@@ -8,7 +8,7 @@ WORKDIR /simple-file-server
 ADD go.mod .
 RUN go mod download
 
-COPY / /simple-file-server
+COPY /src /simple-file-server
 WORKDIR /simple-file-server
 # RUN go test
 RUN go build -o /usr/bin/simple-file-server
