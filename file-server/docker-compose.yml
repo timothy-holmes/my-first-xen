@@ -2,20 +2,19 @@ services:
   simple-file-server:
     build: .
     container_name: mfx-file-server
-    env_file: .env
     environment:
       - LOG_LEVEL=debug
-      - LOCATION_BASE_URL=https://sfs.$DOMAIN
+      - LOCATION_BASE_URL=https://sfs.cloud.timothyholmes.com.au
       - DATA_DIR=/data
-      # - WRITE_SHARED_KEY=abc
-      # - READ_SHARED_KEY=123
+      - WRITE_SHARED_KEY=$WRITE_SHARED_KEY
+      - READ_SHARED_KEY=$READ_SHARED_KEY
     volumes:
-      - ./test_file.txt:/seed/test_file.txt
+      - ./debian-boot/n40l_preseed.cfg:/seed/n40l_preseed.cfg
       # consolidated seed files volume bind
       - ./files:/seed
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.simple-file-server.rule=Host(`sfs.$DOMAIN`)"
+      - "traefik.http.routers.simple-file-server.rule=Host(`sfs.cloud.timothyholmes.com.au`)"
       - "traefik.http.routers.simple-file-server.entrypoints=websecure"
       - "traefik.http.routers.simple-file-server.tls.certresolver=myresolver"
       - "traefik.http.services.simple-file-server.loadbalancer.server.port=4000"
