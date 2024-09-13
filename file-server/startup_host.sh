@@ -14,11 +14,4 @@ docker compose up --build -d
 sleep 20
 
 # for each file in files, do curl command
-for file in ./files/*; do
-    echo $file >> ./seed_files.txt
-    curl \
-        -d "$(cat $file)" \
-        -X POST -H "Authorization: Bearer $WRITE_SHARED_KEY" \
-        https://sfs.cloud.timothyholmes.com.au >> ./seed_files.txt
-    echo "\n" >> ./seed_files.txt
-done
+docker exec -it sfs sh -c 'for file in /seed/*; do curl -d "$(cat $file)" -X POST -H "Authorization: Bearer $WRITE_SHARED_KEY" https://sfs.cloud.timothyholmes.com.au >> ./seed_files.txt; cat ./seed_files.txt; done'
