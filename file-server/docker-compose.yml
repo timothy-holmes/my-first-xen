@@ -10,7 +10,7 @@ services:
       - READ_SHARED_KEY=$READ_SHARED_KEY
     volumes:
       # make sure each file exists or it will be created as a directory
-      - ../debian-boot/n40l_preseed.cfg:/seed/n40l_preseed.cfg
+      - ${PWD}/../debian-boot/n40l_preseed.cfg:/seed/n40l_preseed.cfg
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.simple-file-server.rule=Host(`sfs.cloud.timothyholmes.com.au`)"
