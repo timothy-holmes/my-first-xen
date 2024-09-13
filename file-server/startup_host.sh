@@ -6,7 +6,7 @@ set -u # or set -o nounset
 
 # Clean up previous run
 docker compose down --remove-orphans && 
-sudo rm -rf files & rm -rf seed_files.txt &
+-sudo rm -rf files & rm -rf seed_files.txt
 
 # Let's gooo
 docker compose up --build -d
