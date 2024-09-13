@@ -1,5 +1,5 @@
 # Go build stage
-FROM golang:1.14.0-alpine3.11 as build
+FROM golang:1.14.0-alpine3.11 AS build
 
 RUN apk add --no-cache build-base curl
 
